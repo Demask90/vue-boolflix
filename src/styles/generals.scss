@@ -1,0 +1,21 @@
+// come @ sta SRC, ~ (alt 126) sta a node_module
+
+// Il pacchetto bootstrap appena scaricato e salvato nei node_module lo importo su general.scss.  
+@import '~bootstrap/scss/bootstrap';
+@import './vars.scss';
+
+// se ho bisogno dì un weight font diverso importo il file relativo da node_modules
+// @import '~@fontsource/montserrat/700.css';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $main-font;
+}
+
+// h1 {
+//     font-weight: 700;
+// }
