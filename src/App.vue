@@ -29,12 +29,10 @@ export default {
   computed: {
   },
   methods: {
-
     GetSearchMovies(searchMovies) {
       this.userSearchMovies = searchMovies;
       this.getMovies();
     },
-
     GetSearchSeries(searchSeries) {
       this.userSearchSeries = searchSeries;
       this.getSeries();

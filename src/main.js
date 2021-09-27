@@ -3,9 +3,10 @@ import App from './App.vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import FlagIcon from 'vue-flag-icon'
+import CountryFlag from 'vue-country-flag'
 
-Vue.use(FlagIcon);
+Vue.component('country-flag', CountryFlag)
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.config.productionTip = false

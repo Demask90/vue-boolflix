@@ -3,14 +3,37 @@
             <div class="flip-card">
                 <div class="flip-card-inner">
                 <div class="flip-card-front">
-                <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`" :alt="item.title" style="width:300px;height:400px;">
+                <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`" :alt="item.title || item.name" style="width:300px;height:400px;">
             </div>
             <div class="flip-card-back d-flex-column py-4 px-2">
-                <div><span class="fw-bold">Titolo: </span><span>{{item.title || item.name}}</span></div>
-                <div><span class="fw-bold">Titolo originale: </span><span>{{item.original_title || item.original_name}}</span></div>
-                <div><span class="fw-bold">Voto: </span><span>{{item.vote_average}}</span></div>
-                <div><span class="fw-bold">Lingua: </span><span><flag :iso="item.original_language"/></span></div>
-                <div><span class="fw-bold">Overview: </span><span>{{item.overview}}</span></div>
+
+                <div class="p-2">
+                    <span class="fw-bold">Titolo: </span>
+                    <span>{{item.title || item.name}}</span>
+                </div>
+
+                <div class="p-2">
+                    <span class="fw-bold">Titolo originale: </span>
+                    <span>{{item.original_title || item.original_name}}</span>
+                </div>
+
+                <div class="p-2">
+                    <span class="fw-bold">Voto: </span>
+                    <span v-for="(number, index) in getStar()" :key="index" style="color: yellow"><i class="fas fa-star"></i></span>
+                </div>
+
+                <div class="d-flex align-items-center px-2">
+                    <span class="fw-bold">Lingua: </span>
+                    <span class="flag">
+                        <country-flag :country="getFlag(item.original_language)" size='normal'/> 
+                    </span>
+                </div>
+
+                <div class="p-2">
+                    <span class="fw-bold">Overview: </span>
+                    <span>{{item.overview}}</span>
+                </div>
+
             </div>
         </div>
     </div>
@@ -20,17 +43,23 @@
 <script>
 export default {
     name: 'Card',
-    components: {
-    },
     props: ['item'],
     data() {
-        return {
-            Star: '',
-        }
-    },methods: {
-        getStar() {
-            this.Star = (item.vote_avarge / 2),
-            console.log(this.Star)
+    return {
+        StarVote: '',
+    }
+  },
+    methods: {
+        getFlag(language){
+            if(language=="en")return "gb"
+            if(language=="ja")return "jp"
+            if(language=="ko")return "kp"
+                return language
+        },
+        getStar(vote) {
+            vote == Math.floor(vote);  
+            vote == this.item.vote_average/2;
+            return this.StarVote
         }
     }
 }
@@ -67,7 +96,8 @@ export default {
             position: absolute;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            overflow-y: scroll;
+            overflow: auto;
+
         }
     } 
 }
