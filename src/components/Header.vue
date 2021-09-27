@@ -1,17 +1,14 @@
 <template>
     <header class="d-flex justify-content-between align-items-center mt-0 px-2">
-        <img src="../assets/img/Netflix-Logo.wine.png" alt="">
-        <form class="d-flex">
-            
-            <div>
-                <input type="text" class="form-control"  placeholder="Search Movie" v-model='inputText' @keyup.enter="$emit('performSearch', inputText)" >
-            </div>
-
-            <div>
-                <button type="submit" class="btn btn-danger" @click.prevent="$emit('performSearch', inputText)">
-                    Search
-                </button>
-            </div>
+        <h1>Boolflix</h1>
+        <form class="search d-flex">
+            <input type="text" class="input form-control" placeholder="Search" v-model='inputText'>
+            <button type="submit" class="btn mx-2" @click.prevent="$emit('performSearchMovies', inputText)">
+                Movies
+            </button>
+            <button type="submit" class="btn" @click.prevent="$emit('performSearchSeries', inputText)">
+                Series
+            </button>
         </form>
     </header>
 </template>
@@ -31,10 +28,31 @@ export default {
 
 <style scoped lang="scss">
 @import "../styles/vars.scss";
+
 header {
     background-color: $header-color;
-    img {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    z-index: 999;
+
+    h1 {
         width: 100px;
+        color: $logo-color;
+        font-weight: bold;
+    }
+
+    .search {
+
+        .input {
+            margin-left: 20px;
+        }
+        
+        .btn {
+            background-color: $logo-color;
+            width: 150px;
+            color: $title-color;
+        }
     }
 }
     

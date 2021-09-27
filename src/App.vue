@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header @performSearch='GetSearch'/>
-    <Main :movies="movies"/>
+    <Header @performSearchMovies='GetSearchMovies' @performSearchSeries='GetSearchSeries'/>
+    <Main :movies="movies" :series="series"/>
   </div>
 </template>
 
@@ -21,28 +21,45 @@ export default {
       apiUrl: 'https://api.themoviedb.org/3/search/',
       apiKey: '1ecf94259141687e2632494ab3f364c1',
       movies: [],
-      userSearch: 'All',
-      loading: true
+      series: [],
+      userSearchMovies: '',
+      userSearchSeries: '',
     }
   },
   computed: {
-
   },
   methods: {
-    GetSearch(search) {
-        this.userSearch = search;
-        this.getMovies()
-      },
+
+    GetSearchMovies(searchMovies) {
+      this.userSearchMovies = searchMovies;
+      this.getMovies();
+    },
+
+    GetSearchSeries(searchSeries) {
+      this.userSearchSeries = searchSeries;
+      this.getSeries();
+    },
       
     getMovies() {
-      if(this.userSearch == ''){
-        this.movies = []
+      if(this.userSearchMovies == ''){
+        this.movies = [];
       }
       axios
-           .get(this.apiUrl + 'movie?api_key=' + this.apiKey + '&query=' + this.userSearch)
+           .get(this.apiUrl + 'movie?api_key=' + this.apiKey + '&query=' + this.userSearchMovies)
            .then((response) => {
               console.log(response.data.results);
               this.movies = response.data.results;
+           })
+    },
+    getSeries() {
+      if(this.userSearchSeries == ''){
+        this.series = [];
+      }
+      axios
+           .get(this.apiUrl + 'tv?api_key=' + this.apiKey + '&query=' + this.userSearchSeries)
+           .then((response) => {
+              console.log(response.data.results);
+              this.series = response.data.results;
            })
     },
   },

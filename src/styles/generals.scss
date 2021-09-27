@@ -3,6 +3,7 @@
 // Il pacchetto bootstrap appena scaricato e salvato nei node_module lo importo su general.scss.  
 @import '~bootstrap/scss/bootstrap';
 @import './vars.scss';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 
 // se ho bisogno dì un weight font diverso importo il file relativo da node_modules
 // @import '~@fontsource/montserrat/700.css';
