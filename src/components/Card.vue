@@ -1,43 +1,45 @@
 <template>
-        <div>
+        <li>
             <div class="flip-card">
                 <div class="flip-card-inner">
-                <div class="flip-card-front">
-                <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`" :alt="item.title || item.name" style="width:300px;height:400px;">
+
+                    <div class="flip-card-front">
+                        <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`" :alt="item.title || item.name" style="width:300px;height:400px;">
+                    </div>
+
+                    <div class="flip-card-back d-flex-column py-4 px-2">
+
+                        <div class="p-2">
+                            <span class="fw-bold">Titolo: </span>
+                            <span>{{item.title || item.name}}</span>
+                        </div>
+
+                        <div class="p-2">
+                            <span class="fw-bold">Titolo originale: </span>
+                            <span>{{item.original_title || item.original_name}}</span>
+                        </div>
+
+                        <div class="p-2">
+                            <span class="fw-bold">Voto: </span>
+                            <i v-for=" n in 5" :key="n" class="fa-star" style="color: yellow" :class="(n <= getVote()) ? 'fas' : 'far' "></i>
+                        </div>
+
+                        <div class="d-flex align-items-center px-2">
+                            <span class="fw-bold">Lingua: </span>
+                            <span class="flag">
+                                <country-flag :country="getFlag(item.original_language)" size='normal'/> 
+                            </span>
+                        </div>
+
+                        <div class="p-2">
+                            <span class="fw-bold">Overview: </span>
+                            <span>{{item.overview}}</span>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            <div class="flip-card-back d-flex-column py-4 px-2">
-
-                <div class="p-2">
-                    <span class="fw-bold">Titolo: </span>
-                    <span>{{item.title || item.name}}</span>
-                </div>
-
-                <div class="p-2">
-                    <span class="fw-bold">Titolo originale: </span>
-                    <span>{{item.original_title || item.original_name}}</span>
-                </div>
-
-                <div class="p-2">
-                    <span class="fw-bold">Voto: </span>
-                    <span v-for="(number, index) in getStar()" :key="index" style="color: yellow"><i class="fas fa-star"></i></span>
-                </div>
-
-                <div class="d-flex align-items-center px-2">
-                    <span class="fw-bold">Lingua: </span>
-                    <span class="flag">
-                        <country-flag :country="getFlag(item.original_language)" size='normal'/> 
-                    </span>
-                </div>
-
-                <div class="p-2">
-                    <span class="fw-bold">Overview: </span>
-                    <span>{{item.overview}}</span>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
+        </li>
 </template>
 
 <script>
@@ -56,10 +58,9 @@ export default {
             if(language=="ko")return "kp"
                 return language
         },
-        getStar(vote) {
-            vote == Math.floor(vote);  
-            vote == this.item.vote_average/2;
-            return this.StarVote
+        getVote() {
+           return Math.ceil(this.item.vote_average / 2);
+
         }
     }
 }

@@ -4,18 +4,14 @@
   <section v-if="movies.length !== 0" class="movies">
     <h2>Movies:</h2>
     <ul class="w-100 d-flex flex-wrap justify-content-center col-12 col-sm-6 col-lg-3 col-xl-2 col-xxl-1">
-      <li v-for="(item, index) in movies" :key="index" class="m-1">
-        <Card :item="item"/>
-      </li>
+      <Card v-for="item in movies" :key="item.id" class="m-1"  :item="item"/>
     </ul>
   </section>
 
   <section v-if="series.length !== 0" class="series">
     <h2>Series:</h2>
     <ul class="w-100 d-flex flex-wrap justify-content-center col-12 col-sm-6 col-lg-3 col-xl-2 col-xxl-1">
-      <li v-for="(item, index) in series" :key="index" class="m-1">
-        <Card :item="item"/>
-      </li>
+      <Card v-for="item in series" :key="item.id" class="m-1" :item="item"/>
     </ul>
   </section>
 
