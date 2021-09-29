@@ -1,25 +1,25 @@
 <template>
-<main class="w-100">
+  <main class="w-100">
 
-  <section v-if="movies.length !== 0" class="movies">
-    <h2>Movies:</h2>
-    <ul class="w-100 d-flex flex-wrap justify-content-center col-12 col-sm-6 col-lg-3 col-xl-2 col-xxl-1">
-      <Card v-for="item in movies" :key="item.id" class="m-1"  :item="item"/>
-    </ul>
-  </section>
+    <section v-if="movies.length !== 0" class="movies">
+      <h2>Movies:</h2>
+      <ul class="w-100 d-flex flex-wrap justify-content-center col-12 col-sm-6 col-lg-3 col-xl-2">
+        <Card v-for="item in movies" :key="item.id" class="m-1" :item="item"/>
+      </ul>
+    </section>
 
-  <section v-if="series.length !== 0" class="series">
-    <h2>Series:</h2>
-    <ul class="w-100 d-flex flex-wrap justify-content-center col-12 col-sm-6 col-lg-3 col-xl-2 col-xxl-1">
-      <Card v-for="item in series" :key="item.id" class="m-1" :item="item"/>
-    </ul>
-  </section>
+    <section v-if="series.length !== 0" class="series">
+      <h2>Series:</h2>
+      <ul class="w-100 d-flex flex-wrap justify-content-center col-12 col-sm-6 col-lg-3 col-xl-2">
+        <Card v-for="item in series" :key="item.id" class="m-1" :item="item"/>
+      </ul>
+    </section>
 
-  <section v-if="series.length == 0 && movies.length == 0" class="main-view d-flex justify-content-center">
-    <h1 class="col-12 col-sm-12 col-md-10 col-xl-6 col-xxl-6 p-2">Accedi a migliaia di Film e Serie Tv comodamente da casa</h1>
-  </section>
+    <section v-if="series.length == 0 && movies.length == 0" class="main-view d-flex justify-content-center">
+      <h1 class="col-12 col-sm-12 col-md-10 col-xl-6 col-xxl-6 p-2">Accedi a migliaia di Film e Serie Tv comodamente da casa</h1>
+    </section>
 
-</main>
+  </main>
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
   props: ['series',"movies"],
   components: {
     Card
-  }
+  },
 }
 </script>
 

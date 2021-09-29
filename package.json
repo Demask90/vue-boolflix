@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.10.1",
+    "animated-scroll-to": "^2.2.0",
     "axios": "^0.21.4",
     "bootstrap": "^5.1.1",
     "bootstrap-vue": "^2.21.2",

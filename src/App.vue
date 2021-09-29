@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
-    <Header @performSearchMovies='GetSearchMovies' @performSearchSeries='GetSearchSeries'/>
-    <Main :movies="movies" :series="series"/>
-  </div>
+  <section id="app">
+      <Header @performSearchMovies='GetSearchMovies' @performSearchSeries='GetSearchSeries'/>
+      <Main :movies="movies" :series="series"/>
+  </section>
 </template>
 
 <script>
@@ -47,7 +47,7 @@ export default {
            .then((response) => {
               console.log(response.data.results);
               this.movies = response.data.results;
-           })
+            })
     },
     getSeries() {
       if(this.userSearchSeries == ''){
@@ -58,9 +58,10 @@ export default {
            .then((response) => {
               console.log(response.data.results);
               this.series = response.data.results;
-           })
+            })
     },
-  },
+    
+  }
 }
 </script>
 
@@ -68,5 +69,6 @@ export default {
 #app {
   width: 100%;
   height: 100%;
+
 }
 </style>
